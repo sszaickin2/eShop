@@ -52,7 +52,7 @@ Vue.component('goods-item', {
     template: `
    <div class = "item">
       <div class="fetured__image--style">
-        <img :src="'../img/fetured/' + item.image" alt="img" class="products__one--image">
+        <img :src="'img/fetured/' + item.image" alt="img" class="products__one--image">
       <div class="fetured__link--store">
          <a class = "link__store" name = "add-to-basket" v-on:click.prevent = "$emit('add', item)">
       <img class="link__store--image" src="img/fetured/buy.svg" alt="">Add to Cart</a>

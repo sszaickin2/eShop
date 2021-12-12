@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <link rel="icon" href="img/logo.svg" type="image/x-icon">
+    <title>Online store</title>
+</head>
+
+<body>
+
+<div id="app">
+
+    <header id="header">
+        <div class="header-block container">
+            <div class="header-logo__serch">
+                <div class="header-logo">
+                    <a href="index.html"><img width="44" height="38" src="img/logo.svg" alt=""></a>
+                </div>
+
+                <div class="header-serch">
+                    <img @click="toggleIsVis" class="header__image" src="img/header/search.png" alt="">
+                    <goods-search v-if="isElVis" v-bind:value="searchValue"
+                                  v-on:change="searchValue = $event"></goods-search>
+                </div>
+
+            </div>
+            <div class="header-menu-entrance__basket">
+                <div class="header-menu">
+                    <img @click="toggleElement" class="header-button" src="img/header/burger.png" alt="">
+                    <div v-if="isElVisible" class="header-link">
+                        <img @click="toggleElement" class="header-clouse__menu" src="img/header/menu/Vector.svg" alt="">
+                        <div class="header-link__title">Menu</div>
+                        <ul><span>MAN</span>
+                            <li><a href="product.html">Accessories</a></li>
+                            <li><a href="product.html">Bags</a></li>
+                            <li><a href="product.html">Denim</a></li>
+                            <li><a href="product.html">T-Shirts</a></li>
+                        </ul>
+                        <ul><span>WOMAN</span>
+                            <li><a href="product.html">Accessories</a></li>
+                            <li><a href="product.html">Bags</a></li>
+                            <li><a href="product.html">Denim</a></li>
+                            <li><a href="product.html">T-Shirts</a></li>
+                        </ul>
+                        <ul><span>KIDS</span>
+                            <li><a href="product.html">Accessories</a></li>
+                            <li><a href="product.html">Bags</a></li>
+                            <li><a href="product.html">Denim</a></li>
+                            <li><a href="product.html">T-Shirts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="registration.html" class="header-entrance">
+                    <img src="img/header/user.png" alt="">
+                </a>
+                <div class="header-basket">
+                    <a href="cart.html" class="cart-button"><img src="img/header/buy.png" alt=""></a>
+                    <div class="header-quantity">{{ volume }}</div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </header>
+
+    <main @click="deleteElement">
+
+        <section class="promo">
+            <div class="container">
+                <div class="promo__content">
+                    <div class="promo__image"></div>
+                    <div class="promo__info">
+                        <h1 class="promo__heading">THE BRAND<span class="promo__heading--text">OF LUXERIOUS <span
+                                class="promo__heading--fashion">FASHION</span></span></h1>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="content__info">
+                    <div class="content__image--min">
+                        <div class="content__image--one">
+                            <div class="content__text--one">
+                                <p class="content__text--style">30% Off</p>
+                                <h4 class="content__heading--style">For Women</h4>
+                            </div>
+                            <div class="content__imageone--style">
+                                <img class="content__imageone--size" src="img/content/content1.jpg" alt="content">
+                            </div>
+                        </div>
+
+                        <div class="content__image--one">
+                            <div class="content__text--one">
+                                <p class="content__text--style">HOT DEAL</p>
+                                <h4 class="content__heading--style">FOR MEN</h4>
+                            </div>
+                            <div class="content__imageone--style">
+                                <img class="content__imageone--size" src="img/content/content2.jpg" alt="content">
+                            </div>
+                        </div>
+
+                        <div class="content__image--one">
+                            <div class="content__text--one">
+                                <p class="content__text--style">NEW ARRIVALS</p>
+                                <h4 class="content__heading--style">FOR KIDS</h4>
+                            </div>
+                            <div class="content__imageone--style">
+                                <img class="content__imageone--size" src="img/content/content3.jpg" alt="content">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="content__image--big">
+                        <div class="content__imagebig--position">
+                            <p class="content__text--style content__text--stylebig">LUXIROUS & TRENDY</p>
+                            <h4 class="content__heading--style">ACCESORIES</h4>
+                        </div>
+                        <img class="content__imagebig" src="img/content/content4.jpg" alt="content">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="fetured">
+
+
+            <div class="container">
+                <div class="fetured__content">
+                    <div class="fetured__text">
+                        <h2 class="fetured__text--item">Fetured Items</h2>
+                        <p class="fetured__text--shop">Shop for items based on what we featured in this week</p>
+                    </div>
+                </div>
+
+                <div class="fetured__products">
+
+                    <goods-list v-if="!isError" v-bind:filted-goods="filtedGoods" v-on:add-item="addItem"></goods-list>
+
+                    <v-error v-else></v-error>
+
+                </div>
+
+                <div class="fetured__button">
+                    <a href="catalog.html" class="fetured__button--style">Browse All
+                        Product
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="info">
+            <div class="container">
+                <div class="info__content">
+                    <div class="info__delivery">
+                        <img class="info__image info__image--style" src="img/info/info1.svg" alt="">
+                        <h5 class="info__heading">Free Delivery</h5>
+                        <p class="info__text">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with
+                            extensive models.</p>
+                    </div>
+
+                    <div class="info__delivery">
+                        <img class="info__image" src="img/info/info1.svg" alt="">
+                        <p class="info__heading">Free Delivery</p>
+                        <p class="info__text">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with
+                            extensive models.</p>
+                    </div>
+
+                    <div class="info__delivery">
+                        <img class="info__image" src="img/info/info1.svg" alt="">
+                        <p class="info__heading">Free Delivery</p>
+                        <p class="info__text">Worldwide delivery on all. Authorit tively morph next-generation innov
+                            tion with
+                            extensive models.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="connection">
+            <div class="container">
+                <div class="connection__content">
+                    <div class="connection__info">
+                        <img class="connection__image" src="img/connection/connection1.png" alt="">
+                        <p class="connection__text">“Vestibulum quis porttitor dui! Quisque viverra nunc mi, a pulvinar
+                            purus
+                            condimentum“</p>
+                    </div>
+
+                    <div class="connection__email">
+                        <h4 class="connection__email--heading">SUBSCRIBE</h4>
+                        <p class="connection__email--text">FOR OUR NEWLETTER AND PROMOTION</p>
+                        <form class="connection__form" action="#">
+                            <input class="connection__input" type="email" name="email" placeholder="Enter Your Email">
+                            <button class="connection__button" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <p class="footer__text">© 2021 Brand All Rights Reserved.</p>
+                </div>
+                <div class="footer__social">
+
+                    <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                        <svg class="svg__social" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill__effects" d="M31.4506 0H0V32H31.4506V0Z" fill="white"/>
+
+                            <path class="fill__effects--two"
+                                  d="M19.0884 16.28L19.5069 13.616H16.8902V11.8873C16.8902 11.1585 17.2557 10.4481 18.4277 10.4481H19.6172V8.17997C19.6172 8.17997 18.5377 8 17.5056 8C15.3507 8 13.9422 9.27593 13.9422 11.5857V13.616H11.5469V16.28H13.9422V22.72H16.8902V16.28H19.0884Z"
+                                  fill="black"/>
+                        </svg>
+                    </a>
+
+                    <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill__effects" d="M32.1889 0H0.738281V32H32.1889V0Z" fill="white"/>
+                            <g clip-path="url(#clip0)">
+                                <path class="fill__effects--two"
+                                      d="M16.139 12.6816C14.0238 12.6816 12.3177 14.3849 12.3177 16.4966C12.3177 18.6083 14.0238 20.3117 16.139 20.3117C18.2541 20.3117 19.9602 18.6083 19.9602 16.4966C19.9602 14.3849 18.2541 12.6816 16.139 12.6816ZM16.139 18.9769C14.7721 18.9769 13.6547 17.8646 13.6547 16.4966C13.6547 15.1287 14.7688 14.0164 16.139 14.0164C17.5092 14.0164 18.6233 15.1287 18.6233 16.4966C18.6233 17.8646 17.5058 18.9769 16.139 18.9769V18.9769ZM21.0078 12.5255C21.0078 13.0203 20.6087 13.4154 20.1165 13.4154C19.621 13.4154 19.2252 13.0169 19.2252 12.5255C19.2252 12.0341 19.6243 11.6357 20.1165 11.6357C20.6087 11.6357 21.0078 12.0341 21.0078 12.5255ZM23.5386 13.4287C23.4821 12.2367 23.2094 11.1808 22.3347 10.3109C21.4634 9.44097 20.4058 9.1687 19.2119 9.10894C17.9814 9.03921 14.2932 9.03921 13.0627 9.10894C11.8721 9.16538 10.8145 9.43765 9.93987 10.3076C9.06522 11.1775 8.79584 12.2333 8.73597 13.4253C8.66613 14.6539 8.66613 18.3361 8.73597 19.5646C8.79251 20.7566 9.06522 21.8124 9.93987 22.6824C10.8145 23.5523 11.8688 23.8246 13.0627 23.8843C14.2932 23.9541 17.9814 23.9541 19.2119 23.8843C20.4058 23.8279 21.4634 23.5556 22.3347 22.6824C23.2061 21.8124 23.4788 20.7566 23.5386 19.5646C23.6085 18.3361 23.6085 14.6572 23.5386 13.4287V13.4287ZM21.949 20.8828C21.6895 21.5335 21.1874 22.0349 20.5322 22.2972C19.5511 22.6857 17.2231 22.596 16.139 22.596C15.0548 22.596 12.7235 22.6824 11.7457 22.2972C11.0939 22.0382 10.5917 21.5369 10.329 20.8828C9.93987 19.9033 10.0297 17.5791 10.0297 16.4966C10.0297 15.4142 9.9432 13.0867 10.329 12.1105C10.5884 11.4597 11.0906 10.9583 11.7457 10.696C12.7268 10.3076 15.0548 10.3972 16.139 10.3972C17.2231 10.3972 19.5545 10.3109 20.5322 10.696C21.184 10.955 21.6862 11.4564 21.949 12.1105C22.3381 13.09 22.2483 15.4142 22.2483 16.4966C22.2483 17.5791 22.3381 19.9066 21.949 20.8828Z"
+                                      fill="black"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="14.8991" height="17" fill="white" transform="translate(8.68555 8)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+
+                    <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill__effects" d="M31.9252 0H0.474609V32H31.9252V0Z" fill="white"/>
+                            <g clip-path="url(#clip0)">
+                                <path class="fill__effects--two"
+                                      d="M16.7403 8.20312C13.5556 8.20312 10.4082 10.3406 10.4082 13.8C10.4082 16 11.6374 17.25 12.3823 17.25C12.6896 17.25 12.8666 16.3875 12.8666 16.1438C12.8666 15.8531 12.1309 15.2344 12.1309 14.025C12.1309 11.5125 14.0305 9.73125 16.4889 9.73125C18.6027 9.73125 20.1671 10.9406 20.1671 13.1625C20.1671 14.8219 19.506 17.9344 17.3642 17.9344C16.5913 17.9344 15.9302 17.3719 15.9302 16.5656C15.9302 15.3844 16.7496 14.2406 16.7496 13.0219C16.7496 10.9531 13.835 11.3281 13.835 13.8281C13.835 14.3531 13.9002 14.9344 14.133 15.4125C13.7046 17.2687 12.8293 20.0344 12.8293 21.9469C12.8293 22.5375 12.9131 23.1188 12.969 23.7094C13.0745 23.8281 13.0218 23.8156 13.1832 23.7563C14.7476 21.6 14.6917 21.1781 15.3994 18.3562C15.7812 19.0875 16.7683 19.4812 17.5505 19.4812C20.8469 19.4812 22.3275 16.2469 22.3275 13.3313C22.3275 10.2281 19.6643 8.20312 16.7403 8.20312Z"
+                                      fill="black"/>
+                            </g>
+                            <defs>
+                                <rect width="11.9193" height="16" fill="white" transform="translate(10.4082 8)"/>
+                            </defs>
+                        </svg>
+                    </a>
+
+                    <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill__effects" d="M31.6635 0H0.212891V32H31.6635V0Z" fill="white"/>
+                            <path class="fill__effects--two"
+                                  d="M22.417 12.7405C22.427 12.8826 22.427 13.0248 22.427 13.1669C22.427 17.5019 19.1498 22.4969 13.1599 22.4969C11.3145 22.4969 9.60022 21.9588 8.1582 21.0248C8.4204 21.0552 8.67247 21.0654 8.94475 21.0654C10.4674 21.0654 11.8691 20.5476 12.9884 19.6644C11.5565 19.6339 10.3565 18.6898 9.94305 17.3903C10.1447 17.4207 10.3464 17.441 10.5582 17.441C10.8506 17.441 11.1431 17.4004 11.4153 17.3294C9.92291 17.0248 8.80355 15.705 8.80355 14.1111V14.0705C9.23715 14.3141 9.74139 14.4664 10.2758 14.4867C9.39849 13.8979 8.82373 12.8928 8.82373 11.7557C8.82373 11.1466 8.98504 10.5882 9.26741 10.1009C10.8708 12.0908 13.2809 13.3902 15.9833 13.5324C15.9329 13.2887 15.9027 13.035 15.9027 12.7811C15.9027 10.974 17.3548 9.50195 19.1598 9.50195C20.0976 9.50195 20.9446 9.89789 21.5396 10.5375C22.2757 10.3954 22.9816 10.1212 23.6068 9.74561C23.3648 10.507 22.8505 11.1466 22.1749 11.5527C22.8304 11.4817 23.4657 11.2989 24.0505 11.0451C23.6069 11.6948 23.0522 12.2735 22.417 12.7405V12.7405Z"
+                                  fill="black"/>
+                            <defs>
+                                <rect width="15.8924" height="16" fill="white" transform="translate(8.1582 8)"/>
+                            </defs>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="js/script.js"></script>
+</body>
+
+</html>

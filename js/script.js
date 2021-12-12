@@ -106,7 +106,7 @@ Vue.component('goods-basket', {
       <img v-on:click="$emit('remove-item' ,item.id)" class="clouse__image" src="img/card/cardclouse.svg">
       
         <div class="mango__img">
-         <img :src="'../img/fetured/' + item.image" alt="img" class="mango__image">
+         <img :src="'img/fetured/' + item.image" alt="img" class="mango__image">
          </div>
           
           <div class="mango__text">

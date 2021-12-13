@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:3000/api';
+const API_ROOT = '';
 const request = (path = '', method = "GET", body) => {
     return new Promise((resolve, reject) => {
 
